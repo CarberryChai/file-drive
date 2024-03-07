@@ -1,19 +1,14 @@
 'use client'
 import { Button } from '@/components/ui/button'
 import { api } from '@/convex/_generated/api'
-import { useMutation } from 'convex/react'
+import { useOrganization } from '@clerk/clerk-react'
+import { useMutation, useQuery } from 'convex/react'
 
 export default function Home() {
-  const createFile = useMutation(api.files.createFile)
+  // const { organization } = useOrganization()
+  // const createFile = useMutation(api.files.createFile)
+  // const files = useQuery(api.files.getFiles, { orgId: organization?.id ?? '' })
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-      <Button
-        onClick={() => {
-          createFile({ name: 'hello form chai' })
-        }}
-      >
-        create new file
-      </Button>
-    </main>
+    <main className='flex min-h-screen flex-col items-center justify-between p-24'></main>
   )
 }
