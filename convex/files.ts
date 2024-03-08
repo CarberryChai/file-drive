@@ -1,5 +1,6 @@
 import { ConvexError, v } from 'convex/values'
 import { mutation, query } from './_generated/server'
+import { getUser } from './users'
 
 export const createFile = mutation({
   args: {
@@ -11,6 +12,7 @@ export const createFile = mutation({
     if (!identity) {
       throw new ConvexError('You must be logined in to upload files.')
     }
+    const user = await getUser(ctx, identity.tokenIdentifier)
     await ctx.db.insert('files', {
       name: args.name,
       orgId: args.orgId,
