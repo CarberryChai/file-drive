@@ -9,6 +9,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { api } from '@/convex/_generated/api'
+import { useOrganization } from '@clerk/clerk-react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from 'convex/react'
 import { useForm } from 'react-hook-form'
@@ -33,6 +34,7 @@ const formScheme = z.object({
 export default function UploadForm() {
   const generateUploadUrl = useMutation(api.files.generateUploadUrl)
   const createFile = useMutation(api.files.createFile)
+  const { organization } = useOrganization()
   const form = useForm<z.infer<typeof formScheme>>({
     resolver: zodResolver(formScheme),
     defaultValues: {
